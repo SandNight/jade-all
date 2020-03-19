@@ -1,2 +1,3 @@
 # jade-all
-test
+samples
+  demo调试项目
