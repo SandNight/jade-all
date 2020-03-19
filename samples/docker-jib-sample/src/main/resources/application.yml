@@ -1,0 +1,55 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${jade.config.nacos.addr}
+        namespace: ${jade.config.nacos.namespace}
+        enabled: true
+        register-enabled: true
+    sentinel:
+      transport:
+        dashboard: 172.16.6.124:8849
+      datasource:
+        flow:
+          nacos:
+            server-addr: ${jade.config.nacos.addr}
+            namespace: ${jade.config.nacos.namespace}
+            dataId: docker-jib-sample-sentinel-flow-rule
+            groupId: jib-sample
+            data-type: json
+            rule-type: flow
+  aop:
+    auto: true
+
+dubbo:
+  scan:
+    base-packages: com.jade.sample.jib.service
+  protocols:
+    dubbo:
+      name: dubbo
+      port: -1
+  registry:
+    address: spring-cloud://localhost
+  application:
+    qos:
+      enable: false
+  cloud:
+    subscribed-services: ""
+  provider:
+    dynamic: true
+    timeout: 10000
+  consumer:
+    check: false
+    timeout: 10000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  config: classpath:logback-spring.xml
+feign:
+  hystrix:
+    enabled: true

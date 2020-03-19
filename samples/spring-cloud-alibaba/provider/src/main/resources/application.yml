@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${jade.config.nacos.addr}
+        namespace: ${jade.config.nacos.namespace}
+        enabled: true
+        register-enabled: true
+  aop:
+    auto: true
+dubbo:
+  scan:
+    base-packages: com.jade.server.service
+  protocols:
+    dubbo:
+      name: dubbo
+      port: -1
+  registry:
+    address: spring-cloud://localhost
+  application:
+    qos:
+      enable: false
+  provider:
+    dynamic: true
+    timeout: 10000
+  consumer:
+    check: false
+    timeout: 10000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  config: classpath:logback-spring.xml
+feign:
+  hystrix:
+    enabled: true

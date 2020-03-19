@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: alibaba-gateway
+  main:
+    allow-bean-definition-overriding: true
+    zookeeper:
+      enabled: false
+    consul:
+      enabled: false
+
+eureka:
+  client:
+    enabled: false
+
+ribbon:
+  nacos:
+    enabled: false

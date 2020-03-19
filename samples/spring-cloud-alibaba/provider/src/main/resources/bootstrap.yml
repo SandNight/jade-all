@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: alibaba-provider
+  profiles:
+    active: @env@
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    zookeeper:
+      enabled: false
+    consul:
+      enabled: false
+
+eureka:
+  client:
+    enabled: false
+
+---
+spring:
+  profiles: local
+jade.config:
+  nacos:
+    addr: 127.0.0.1:8848
+    namespace:
+---
+spring:
+  profiles: dev
+jade.config:
+  nacos:
+    addr: 172.16.6.124:8848,172.16.5.16:8848,172.16.5.17:8848
+    namespace: public #bddf255f-a744-4702-9aea-6e6b7016eb75
